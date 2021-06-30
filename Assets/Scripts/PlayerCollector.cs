@@ -8,8 +8,11 @@ public class PlayerCollector : MonoBehaviour
     {
         if (other.tag == "Collectable")
         {
-            Debug.Log("You have collected a " + other.name);
+            
             Destroy(other.gameObject);
+            RingManager.collectedRingNum++;
+
+            Debug.Log("You have collected " + RingManager.collectedRingNum + " rings.");
         }
         else
         {
