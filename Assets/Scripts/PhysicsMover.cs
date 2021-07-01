@@ -32,6 +32,10 @@ public class PhysicsMover : MonoBehaviour
             //set the Y value to equal our jump power
             movement.y = jumpPower;
         }
+        else if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            movement.y = -jumpPower*5;
+        }
         else //if we HAVEN'T pressed the space bar
         {
             //Let the rigidbody system take control of the Y axis. (eg. leave it alone)
