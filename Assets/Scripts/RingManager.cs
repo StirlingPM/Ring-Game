@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class RingManager : MonoBehaviour
 {
-    float timeRemaining = 300;
+    float timeRemaining;
     public Text ringCounter;
     public Text WinMessage;
     public GameObject ring;
@@ -19,6 +19,8 @@ public class RingManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timeRemaining = 300;
+        collectedRingnum = 0;
         WinMessage.enabled = false;
         
         SpawnRing(howManyRings);
@@ -51,13 +53,20 @@ public class RingManager : MonoBehaviour
         GameObject lastRing = gameObject;
         for (int i = 0; i < howMany; i++)
         {
-            randPos.x = Random.Range(30f, 50f); //random number
-            randPos.y = Random.Range(-2f, 10f);  // random number
-            randPos.z = Random.Range(-20f, 20f);// random number
+            randPos.x = Random.Range(0f, 0f); //random number
+            randPos.y = Random.Range(-0f, 0f);  // random number
+            randPos.z = Random.Range(1f, 2f);// random number
             GameObject theRing = Instantiate(ring, lastRing.transform.position + randPos, transform.rotation);
-            theRing.transform.LookAt(lastRing.transform.position);
+            //theRing.transform.LookAt(lastRing.transform.position);
             lastRing = theRing;
         }
 
     }
+
+
+
+    
+
+
+
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PhysicsMover : MonoBehaviour
 {
@@ -41,6 +42,20 @@ public class PhysicsMover : MonoBehaviour
             //Let the rigidbody system take control of the Y axis. (eg. leave it alone)
             movement.y = rigi.velocity.y;
         }
+
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            //quit the game
+            Application.Quit();
+            Debug.Log("Quit");
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            //restart the game
+            SceneManager.LoadScene(0);
+        }
+
 
         //apply movement speed
         rigi.velocity = transform.TransformDirection(movement);

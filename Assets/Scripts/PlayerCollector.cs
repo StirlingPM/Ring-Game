@@ -30,10 +30,10 @@ public class PlayerCollector : MonoBehaviour
 
     void DoubleMoveSpeed()
     {
-        characterMover.movementSpeed *= 2f;
+        characterMover.movementSpeed *= 1.1f;
     }
     void HalfMoveSpeed()
     {
-        characterMover.movementSpeed /= 2f;
+        characterMover.movementSpeed /= 1.1f;
     }
 }
