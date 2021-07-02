@@ -10,20 +10,25 @@ public class RingManager : MonoBehaviour
     public Text WinMessage;
     public GameObject ring;
     Vector3 randPos;
-    public int totalRingNum = 10;
+    public int totalRingNum;
+    public int howManyRings;
+    int currentRingNum;
+
     public static int collectedRingnum;
 
     // Start is called before the first frame update
     void Start()
     {
         WinMessage.enabled = false;
-        SpawnRing(totalRingNum);
+        
+        SpawnRing(howManyRings);
+        currentRingNum = howManyRings;
     }
 
     // Update is called once per frame
     void Update()
     {
-        ringCounter.text = collectedRingnum + "/" + totalRingNum;
+        ringCounter.text = collectedRingnum + "/" + currentRingNum;
         if (collectedRingnum >= totalRingNum && WinMessage.enabled == false)
         {
             timeRemaining -= Time.deltaTime;
@@ -34,22 +39,24 @@ public class RingManager : MonoBehaviour
             WinMessage.enabled = false;
         }
 
-        if (collectedRingnum == totalRingNum)
+        if (collectedRingnum == currentRingNum && collectedRingnum != totalRingNum)
         {
-            SpawnRing(5);
-            totalRingNum += (5);
+            SpawnRing(howManyRings);
+            currentRingNum += howManyRings;
         }
     }
 
     void SpawnRing(int howMany)
     {
-
+        GameObject lastRing = gameObject;
         for (int i = 0; i < howMany; i++)
         {
-            randPos.x = Random.Range(0, 100); //random number
-            randPos.y = Random.Range(0f, 2f);  // random number
-            randPos.z = Random.Range(0, 100);// random number
-            Instantiate(ring, transform.position + randPos, transform.rotation * Quaternion.Euler(Vector3.up * Random.Range(0, 0)));
+            randPos.x = Random.Range(30f, 50f); //random number
+            randPos.y = Random.Range(-2f, 10f);  // random number
+            randPos.z = Random.Range(-20f, 20f);// random number
+            GameObject theRing = Instantiate(ring, lastRing.transform.position + randPos, transform.rotation);
+            theRing.transform.LookAt(lastRing.transform.position);
+            lastRing = theRing;
         }
 
     }
